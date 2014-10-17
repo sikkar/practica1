@@ -87,7 +87,6 @@ public class Principal extends Activity {
                 });
         alert.setNegativeButton(R.string.cancelar,null);
         alert.show();
-        //tostada("Elemento añadido");
         return true;
 
     }
