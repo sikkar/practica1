@@ -42,4 +42,15 @@
         android:layout_alignBottom="@+id/etModelo"
         android:onClick="fotoPick" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/etAnio"
+        android:layout_below="@+id/etModelo"
+        android:layout_toRightOf="@+id/ivFotoaniadir"
+        android:layout_toEndOf="@+id/ivFotoaniadir"
+        android:layout_alignRight="@+id/etModelo"
+        android:layout_alignEnd="@+id/etModelo"
+        android:hint="@string/anio" />
+
 </RelativeLayout>

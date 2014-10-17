@@ -40,20 +40,35 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btEditar"
+        android:id="@+id/btEliminar"
         android:layout_below="@+id/tvModelo"
         android:layout_toRightOf="@+id/ivFoto"
         android:layout_toEndOf="@+id/ivFoto"
-        android:src="@android:drawable/presence_offline" />
+        android:src="@android:drawable/presence_offline"
+        android:onClick="borrar" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btEliminar"
+        android:id="@+id/btEditar"
+        android:layout_below="@+id/tvModelo"
+        android:layout_toRightOf="@+id/btEliminar"
+        android:layout_toEndOf="@+id/btEliminar"
+        android:layout_alignParentStart="false"
+        android:src="@android:drawable/ic_menu_preferences"
+        android:layout_alignBottom="@+id/btEliminar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/tvAnio"
         android:layout_below="@+id/tvModelo"
         android:layout_toRightOf="@+id/btEditar"
         android:layout_toEndOf="@+id/btEditar"
-        android:layout_alignParentStart="false"
-        android:src="@android:drawable/ic_menu_preferences"
-        android:layout_alignBottom="@+id/btEditar" />
+        android:layout_alignBottom="@+id/btEditar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:hint="@string/anio"
+        android:gravity="center" />
 </RelativeLayout>

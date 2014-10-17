@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class Principal extends Activity {
 
-    private ArrayList <Bicicleta> datos;
+    private ArrayList <Bicicleta> bicicletas;
     private AdaptadorArrayList ad;
 
     @Override
@@ -45,7 +45,6 @@ public class Principal extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_aniadir) {
-
             return aniadir();
         }
         return super.onOptionsItemSelected(item);
@@ -56,10 +55,14 @@ public class Principal extends Activity {
     /*****************************************************/
 
     public void initComponents(){
-        ad = new AdaptadorArrayList(this, R.layout.detalle_lista, datos);
-        final ListView lv = (ListView) findViewById(R.id.listView);
+        bicicletas = new ArrayList <Bicicleta> ();
+        Bitmap bit = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.ic_launcher);
+        Bicicleta bici = new Bicicleta("Orbea","Alma", bit,"2014");
+        bicicletas.add(bici);
+        ad = new AdaptadorArrayList(this, R.layout.detalle_lista, bicicletas);
+        ListView lv = (ListView) findViewById(R.id.listView);
         lv.setAdapter(ad);
-
+        registerForContextMenu(lv);
     }
 
     public boolean aniadir(){
@@ -71,18 +74,19 @@ public class Principal extends Activity {
         alert.setPositiveButton(R.string.alta,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        EditText et1, et2;
+                        EditText et1, et2, et3;
                         et1 = (EditText) vista.findViewById(R.id.etMarca);
                         et2 = (EditText) vista.findViewById(R.id.etModelo);
+                        et3 = (EditText) vista.findViewById(R.id.etAnio);
                         Bitmap bit = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.ic_launcher);
                         /*
                         ImageView iv1;
                         iv1 = (ImageView) vista.findViewById(R.id.ivFotoaniadir);
                         */
-                        Bicicleta bc = new Bicicleta(et1.toString(),et2.toString(),bit);
-                        datos.add(bc);
+                        Bicicleta bc = new Bicicleta(et1.getText().toString(),et2.getText().toString(),bit,et3.getText().toString());
+                        bicicletas.add(bc);
                         ad.notifyDataSetChanged();
-                        tostada(R.string.elAniadido+"");
+                        tostada("Elemento Añadido");
                     }
                 });
         alert.setNegativeButton(R.string.cancelar,null);
@@ -93,5 +97,21 @@ public class Principal extends Activity {
 
     private void tostada(String s){
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
+
+    public void borrar(View view){
+        final int elemento;
+        elemento = (Integer)view.getTag();
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(R.string.borrar);
+        LayoutInflater inflater = LayoutInflater.from(this);
+        alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                bicicletas.remove(elemento);
+                ad.notifyDataSetChanged();
+            }
+        });
+        alert.setNegativeButton(android.R.string.no,null);
+        alert.show();
     }
 }

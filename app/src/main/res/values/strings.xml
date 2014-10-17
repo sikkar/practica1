@@ -5,10 +5,11 @@
     <string name="action_settings">Settings</string>
     <string name="tvMarca">Marca</string>
     <string name="tvModelo">Modelo</string>
-    <string name="borrar">Borrar</string>
+    <string name="borrar">Borrar?</string>
     <string name="aniadir">Añadir</string>
     <string name="alta">Añadir</string>
     <string name="elAniadido">Elemento Añadido</string>
     <string name="cancelar">Cancelar</string>
+    <string name="anio">Año</string>
 
 </resources>
