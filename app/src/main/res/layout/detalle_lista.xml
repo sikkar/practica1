@@ -9,7 +9,9 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:id="@+id/ivFoto"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/ic_launcher"
+        android:layout_marginRight="10dp"
+        android:onClick="cambiarFoto" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,7 +46,7 @@
         android:layout_below="@+id/tvModelo"
         android:layout_toRightOf="@+id/ivFoto"
         android:layout_toEndOf="@+id/ivFoto"
-        android:src="@android:drawable/presence_offline"
+        android:src="@android:drawable/presence_busy"
         android:onClick="borrar" />
 
     <ImageButton
@@ -55,20 +57,21 @@
         android:layout_toRightOf="@+id/btEliminar"
         android:layout_toEndOf="@+id/btEliminar"
         android:layout_alignParentStart="false"
-        android:src="@android:drawable/ic_menu_preferences"
-        android:layout_alignBottom="@+id/btEliminar" />
+        android:src="@android:drawable/ic_menu_edit"
+        android:layout_alignBottom="@+id/btEliminar"
+        android:onClick="editar" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/tvAnio"
+        android:id="@+id/tvTipo"
         android:layout_below="@+id/tvModelo"
         android:layout_toRightOf="@+id/btEditar"
         android:layout_toEndOf="@+id/btEditar"
         android:layout_alignBottom="@+id/btEditar"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:hint="@string/anio"
+        android:hint="@string/tipo"
         android:gravity="center" />
 </RelativeLayout>

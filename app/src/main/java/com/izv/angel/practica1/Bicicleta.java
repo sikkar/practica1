@@ -9,17 +9,23 @@ public class Bicicleta {
 
     private String marca;
     private String modelo;
-    private String anio;
+    private String tipo;
     private Bitmap foto;
 
-    public Bicicleta(String marca, String modelo, Bitmap foto, String anio) {
+    public Bicicleta(String marca, String modelo, Bitmap foto, String tipo) {
         this.marca = marca;
         this.modelo = modelo;
         this.foto = foto;
-        this.anio=anio;
+        this.tipo = tipo;
     }
 
     public Bicicleta() {
+    }
+
+    public Bicicleta(String marca, String modelo, String tipo) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.tipo = tipo;
     }
 
     public String getMarca() {
@@ -46,11 +52,11 @@ public class Bicicleta {
         this.foto = foto;
     }
 
-    public String getAnio() {
-        return anio;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setAnio(String anio) {
-        this.anio = anio;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

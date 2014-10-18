@@ -45,15 +45,16 @@ public class AdaptadorArrayList extends ArrayAdapter <Bicicleta> {
             vh.iv = (ImageView) convertView.findViewById(R.id.ivFoto);
             vh.bt1 = (ImageButton) convertView.findViewById(R.id.btEliminar);
             vh.bt2 = (ImageButton) convertView.findViewById(R.id.btEditar);
-            vh.tv3 = (TextView) convertView.findViewById(R.id.tvAnio);
+            vh.tv3 = (TextView) convertView.findViewById(R.id.tvTipo);
             convertView.setTag(vh);
         } else {
             vh = (ViewHolder) convertView.getTag();
         }
         vh.tv1.setText(lista.get(position).getMarca());
         vh.tv2.setText(lista.get(position).getModelo());
-        vh.tv3.setText(lista.get(position).getAnio());
+        vh.tv3.setText(lista.get(position).getTipo());
         vh.iv.setTag(position);
+        vh.iv.setImageBitmap(lista.get(position).getFoto());
         vh.bt1.setTag(position);
         vh.bt2.setTag(position);
         return convertView;

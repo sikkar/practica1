@@ -7,9 +7,12 @@
     <string name="tvModelo">Modelo</string>
     <string name="borrar">Borrar?</string>
     <string name="aniadir">Añadir</string>
+    <string name="editar">Editar</string>
     <string name="alta">Añadir</string>
     <string name="elAniadido">Elemento Añadido</string>
     <string name="cancelar">Cancelar</string>
-    <string name="anio">Año</string>
+    <string name="tipo">Tipo</string>
+    <string name="carretera">Carretera</string>
+    <string name="montaña">Montaña</string>
 
 </resources>
