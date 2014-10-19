@@ -22,12 +22,6 @@ public class Bicicleta {
     public Bicicleta() {
     }
 
-    public Bicicleta(String marca, String modelo, String tipo) {
-        this.marca = marca;
-        this.modelo = modelo;
-        this.tipo = tipo;
-    }
-
     public String getMarca() {
         return marca;
     }

@@ -72,6 +72,7 @@ public class Principal extends Activity {
 
     public void initComponents(){
         bicicletas = new ArrayList <Bicicleta> ();
+        //Bicicleta para probar la aplicacion
         Bitmap bit = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.ic_launcher);
         Bicicleta bici = new Bicicleta("Orbea","Alma", bit,"Montaña");
         bicicletas.add(bici);
@@ -80,6 +81,15 @@ public class Principal extends Activity {
         lv.setAdapter(ad);
         registerForContextMenu(lv);
     }
+
+    private void tostada(String s){
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
+
+    /*****************************************************/
+    /*                 metodos manejo de la lista        */
+    /*****************************************************/
+
 
     public boolean aniadir(){
         AlertDialog.Builder alert= new AlertDialog.Builder(this);
@@ -101,24 +111,21 @@ public class Principal extends Activity {
                         Bicicleta bc = new Bicicleta(et1.getText().toString(),et2.getText().toString(),bit,tipo);
                         bicicletas.add(bc);
                         ad.notifyDataSetChanged();
-                        tostada("Elemento Añadido");
+                        tostada(getString(R.string.elAniadido));
                     }
                 });
         alert.setNegativeButton(R.string.cancelar,null);
         alert.show();
         return true;
-
     }
 
-    private void tostada(String s){
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-    }
+
 
     public void borrar(View view){
         final int elemento;
         elemento = (Integer)view.getTag();
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle(R.string.borrar);
+        alert.setTitle(getString(R.string.borrar) +" "+ bicicletas.get(elemento).getMarca() +" "+bicicletas.get(elemento).getModelo()+" "+getString(R.string.exclamacion) );
         LayoutInflater inflater = LayoutInflater.from(this);
         alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
@@ -164,7 +171,7 @@ public class Principal extends Activity {
 
     }
 
-    // metodo cambiar foto
+    // metodos cambiar foto
     public void cambiarFoto(View view){
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
@@ -178,7 +185,6 @@ public class Principal extends Activity {
         switch(requestCode) {
             case SELECT_PHOTO:
                 if(resultCode == RESULT_OK){
-
                     Uri selectedImage = imageReturnedIntent.getData();
                     InputStream imageStream = null;
                     try {
