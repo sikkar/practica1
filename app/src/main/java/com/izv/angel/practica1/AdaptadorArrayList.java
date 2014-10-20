@@ -18,7 +18,7 @@ public class AdaptadorArrayList extends ArrayAdapter <Bicicleta> {
     private Context contexto;
     private ArrayList <Bicicleta> lista;
     private int recurso;
-    private static LayoutInflater i;
+    private LayoutInflater i;
 
     public class ViewHolder {
         public TextView tv1, tv2, tv3;

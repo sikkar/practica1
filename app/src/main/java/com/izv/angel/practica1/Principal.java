@@ -171,7 +171,11 @@ public class Principal extends Activity {
 
     }
 
-    // metodos cambiar foto
+    /*****************************************************/
+    /*                 metodos cambiar foto              */
+    /*****************************************************/
+
+
     public void cambiarFoto(View view){
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
@@ -198,7 +202,5 @@ public class Principal extends Activity {
                 }
         }
     }
-
-
 
 }
