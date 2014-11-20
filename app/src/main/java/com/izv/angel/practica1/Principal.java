@@ -25,6 +25,7 @@ import android.widget.Toast;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class Principal extends Activity {
@@ -63,6 +64,7 @@ public class Principal extends Activity {
         if (id == R.id.action_aniadir) {
             return aniadir();
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -73,8 +75,8 @@ public class Principal extends Activity {
     public void initComponents(){
         bicicletas = new ArrayList <Bicicleta> ();
         //Bicicleta para probar la aplicacion
-        Bitmap bit = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.ic_launcher);
-        Bicicleta bici = new Bicicleta("Orbea","Alma", bit,"Montaña");
+        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/drawable/bike");
+        Bicicleta bici = new Bicicleta("Orbea","Alma",uri ,"Montaña");
         bicicletas.add(bici);
         ad = new AdaptadorArrayList(this, R.layout.detalle_lista, bicicletas);
         ListView lv = (ListView) findViewById(R.id.listView);
@@ -107,11 +109,18 @@ public class Principal extends Activity {
                         tipo = rb.getText().toString();
                         et1 = (EditText) vista.findViewById(R.id.etMarca);
                         et2 = (EditText) vista.findViewById(R.id.etModelo);
-                        Bitmap bit = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.ic_launcher);
-                        Bicicleta bc = new Bicicleta(et1.getText().toString(),et2.getText().toString(),bit,tipo);
-                        bicicletas.add(bc);
+                        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/drawable/bike");
+                        Bicicleta bc = new Bicicleta(et1.getText().toString(),et2.getText().toString(),uri,tipo);
+                        if(!bicicletas.contains(bc)) {
+                            bicicletas.add(bc);
+                            tostada(getString(R.string.elAniadido));
+                        }else{
+                            tostada(getString(R.string.existe));
+                            aniadir();
+                        }
+                        Collections.sort(bicicletas);
                         ad.notifyDataSetChanged();
-                        tostada(getString(R.string.elAniadido));
+
                     }
                 });
         alert.setNegativeButton(R.string.cancelar,null);
@@ -130,6 +139,7 @@ public class Principal extends Activity {
         alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 bicicletas.remove(elemento);
+                Collections.sort(bicicletas);
                 ad.notifyDataSetChanged();
             }
         });
@@ -163,6 +173,7 @@ public class Principal extends Activity {
                         bicicletas.get(elemento).setMarca(et1.getText().toString());
                         bicicletas.get(elemento).setModelo(et2.getText().toString());
                         bicicletas.get(elemento).setTipo(tipo);
+                        Collections.sort(bicicletas);
                         ad.notifyDataSetChanged();
                     }
                 });
@@ -170,6 +181,8 @@ public class Principal extends Activity {
         alert.show();
 
     }
+
+
 
     /*****************************************************/
     /*                 metodos cambiar foto              */
@@ -190,14 +203,16 @@ public class Principal extends Activity {
             case SELECT_PHOTO:
                 if(resultCode == RESULT_OK){
                     Uri selectedImage = imageReturnedIntent.getData();
-                    InputStream imageStream = null;
-                    try {
-                        imageStream = getContentResolver().openInputStream(selectedImage);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
+                    boolean guardar =true;
+                    for (int i=0;i<bicicletas.size();i++){
+                        if(bicicletas.get(i).getFoto().compareTo(selectedImage)==0){
+                            tostada(getString(R.string.utilizada));
+                            guardar=false;
+                        }
                     }
-                    Bitmap imagen = BitmapFactory.decodeStream(imageStream);
-                    bicicletas.get(posicion).setFoto(imagen);
+                    if (guardar){
+                        bicicletas.get(posicion).setFoto(selectedImage);
+                    }
                     ad.notifyDataSetChanged();
                 }
         }

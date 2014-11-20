@@ -54,7 +54,7 @@ public class AdaptadorArrayList extends ArrayAdapter <Bicicleta> {
         vh.tv2.setText(lista.get(position).getModelo());
         vh.tv3.setText(lista.get(position).getTipo());
         vh.iv.setTag(position);
-        vh.iv.setImageBitmap(lista.get(position).getFoto());
+        vh.iv.setImageURI(lista.get(position).getFoto());
         vh.bt1.setTag(position);
         vh.bt2.setTag(position);
         return convertView;
